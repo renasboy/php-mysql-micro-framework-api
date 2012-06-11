@@ -3,8 +3,8 @@ For explanation of steps see bellow.
 
 * Quick installation:
 
-git clone git://repohost/core
-git clone git://repohost/api
+git clone https://github.com/renasboy/php-mysql-micro-framework-core core
+git clone https://github.com/renasboy/php-mysql-micro-framework-api api
 cd api
 ln -sf api.dev.ini etc/api.ini
 ./bin/make
@@ -16,11 +16,11 @@ vim etc/api.dev.ini
 
 1. clone the core repo (dependency)
 
-    $ git clone git://repohost/core
+    $ git clone https://github.com/renasboy/php-mysql-micro-framework-core core
 
 2. clone the api repo
 
-    $ git clone git://repohost/api
+    $ git clone https://github.com/renasboy/php-mysql-micro-framework-api api
 
 3. update the configuration file etc/api.dev.ini
 
