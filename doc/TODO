@@ -1,0 +1,7 @@
+- add query and resource cache
+- check on TODO comments in the code
+- create new scafold scripts to generate parts of the backend api
+- add index resource and help option for self documentation
+- check on how to return resources url instead of the resource content
+- maybe then add a expand flag to make it recoursive and expand the content
+- refine validator and implement empty methods

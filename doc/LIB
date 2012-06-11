@@ -1,0 +1,24 @@
+This is the LIB file.
+This document describe the libraries included.
+
+I have tried to compile a concise list of essential libraries every api will need.
+Everything else should be done while implementing specific api.
+
+List of files in lib dir is:
+
+api.class.php                   - main API bootstrap and dependency injector
+conf.class.php                  - configuration class, gets values from configuration (depends on core)
+dao.class.php                   - abstract class to access the data based on queries created by the concrete classes
+db.class.php                    - database class, connects and communicate with database in this case mysql
+error.class.php                 - error class, throw exceptions based on http error codes (depends on core)
+logger.class.php                - logger class, logs message for debug or error to files (depends on core)
+model.class.php                 - model class manage models, find, save, remove and validate objects status 
+query.class.php                 - query class, used to help compose queries for mysql
+read_only_resource.class.php    - resource forcing post and delete to method_not_allowed
+request.class.php               - request class, identify resources, request parameters, methods, etc.. (depends on core) 
+resource.class.php              - resource class, handles get, post, delete and options passed to resources 
+simple_dao.class.php            - simple dao class, is a basic implementation of a concrete dao 
+simple_model.class.php          - simple model class, is a basic implementation of a real model, this one has only validation
+simple_resource.class.php       - simple resource class, is a basic implementation of a resource skeleton 
+validator.class.php             - validator class validates model data types (depends on core)
+

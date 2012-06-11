@@ -1,0 +1,14 @@
+This is the ABOUT file.
+This file describes this project.
+
+This project is an attempt to craete a simple API framework in php/mysql.
+
+It is possible to use this project to create an API with relatively little
+development time.
+
+The steps to create the first API would be:
+
+1. Design and load the database.
+2. Create resources, models and DAOs.
+3. Add created resources to configuration
+4. Use and tweak the API

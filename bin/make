@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# this script prepares the application to be used
+# make sure the important links, directories and files are in place
+
+# define API_ROOT and PARENT_ROOOT based on script location
+API_ROOT=`readlink -f $(dirname $0)/..`
+PARENT_ROOT=`readlink -f $API_ROOT/..`
+
+# test for etc/api.ini confiiguration link
+if test ! -f "$API_ROOT/etc/api.ini"; then
+    echo Cannot find etc/api.ini, make link first
+    exit 1
+fi
+
+# read all values in configuration file
+eval $(sed -n -e 's/API_ROOT/$API_ROOT/g' -e '/=/p' $API_ROOT/etc/api.ini)
+
+# create LIB link for core
+if test -e "$API_ROOT/lib/core"; then
+rm -f $API_ROOT/lib/core
+fi
+ln -sf $PARENT_ROOT/core $API_ROOT/lib/core
+
+# create LOGS directories and give permissions
+mkdir -p $logger_root
+touch $logger_root/{debug,error}.log
+chmod 666 $logger_root/{debug,error}.log
+
+# empty logs just in case
+echo > $logger_root/error.log
+echo > $logger_root/debug.log

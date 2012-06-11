@@ -1,0 +1,34 @@
+This is the HOWTO file.
+This file describes how to create an API using the framework.
+
+Before we start creating files, let's understand the contents of it.
+
+- Resources
+    Resources are created by the schema and options definitions.
+    Schema is the data skeleton that represents the resource with its relations
+    Options allows to pass parameters to the server and configure the schema.
+    Resource files are stored under usr/api/resource/
+
+- Models
+    Models are created by the definition of the model, dependency, validation
+    and the find_ and save_ methods for relations (find_relation, save_relation).
+    Definition of the model is the field to datatype map and the relationships.
+    Dependencies are models used during find_ and save_ queries for relations.
+    Validation is the list of fields and relations required for saving.
+    find_ methods are how to retrieve relationships to compose complex resources.
+    save_ methods are how to save multiple related objects at once.
+    Model files are stored under usr/api/model/
+    
+- DAOs
+    DAOs are created by the definition of queries, specially read queries that
+    are always complex with filters and joins and groups and sorts and limits.
+    The definition of query is a select query created specifically for this 
+    resource. Of cource the simple_dao can be used if the entity is simple.
+    DAO files are stored under usr/api/dao/
+
+- Request configuration
+    The request configuration is composed by multiple entries one per resource.
+    The resource can only be accessed after adding it to the configuration file
+    until then it will return 404.
+    Request configuration is stored under etc/request.ini file and this location 
+    can be changed in the etc/api.ini file.

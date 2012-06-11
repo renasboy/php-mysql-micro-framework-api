@@ -1,0 +1,22 @@
+* THESE ARE GENERIC RULES FOR CREATING .mysql FILES FOR THE APPLICATION *
+
+- table names should always be written in singular form (no plural), always lowercase with
+words separated by underscore
+    eg. product, article, photo, member_type, article_article
+
+- field names should always be written in singular form (no plural), always lowercase with
+words separated by underscore
+    eg. name, product_id
+
+- SQL should be written always in UPPERCASE
+
+- KEY declaration should always contain the name of the key that is the field name with the number of the key
+    eg. KEY seo1 (seo)
+
+- normaly table's primary keys columns are named "id"
+    eg. id
+
+- foreign keys columns are named after the foreign table name undercore id
+    eg. photo_id, member_id, member_type_id
+
+- templates from the data/templates.mysql file should be used to create intial table structure
