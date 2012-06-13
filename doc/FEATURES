@@ -1,0 +1,162 @@
+This is the FEATURES file.
+This file contains the list of features in this project.
+
+This is a micro framework to create a simple http api using mysql.
+It is possible to send json input and/or get and post parameters.
+The resource url can also contains parameters. The api outputs json data.
+
+The features are basicaly the classes in the libraries and how they can be used.
+
+- Configuration
+
+The conf class is used to read ini format configuration files. It is simple as
+provide the configuration file and then get values from it.
+
+Eg.:
+
+$conf       = new \api\conf(API_CONF_FILE);
+$log_file   = $conf->get('log_file'); 
+
+- Logging
+
+The logger class is used to write message to log files. It is simple as provide
+the name of the log directory and the verbosity level and then send debug or
+error messages. Error messages are sent to error.log and debug messages are sent
+to debug.log.
+
+Eg.:
+
+$logger     = new \api\logger(API_LOG_DIR, LOG_DEBUG);
+$logger->error('This is an error message');
+$logger->debug('This is a debug message');
+
+- Error handling
+
+The error class is used to return http errors. It is simple as provide error
+reporting level and an instance of the logger and then call methods with http
+errors names passing a specific error message, all error messages are logged
+using the logger provided.
+
+Eg.:
+
+$error      = new \api\error(E_ALL, $logger);
+$error->not_found('This page was not found');
+$error->bad_request('This was a bad request');
+
+- Database (mysql)
+
+The db class is used to communicate with the mysql database. It is simple as
+provide the connection values, an instance of the logger and error objects and
+then call query method to execute the queries. It also contains simple escaping
+and navigation using the pointer. The db class is usually handled by the DAO and
+the query objects.
+
+Eg.:
+
+$db         = new \api\db(DB_HOST, DB_PORT, DB_USER, DB_PASS, DB_NAME, $logger, $error);
+$result     = $db->query('SELECT * FROM table');
+$object1    = $db->next($result);
+$object2    = $db->next($result);
+
+- Validation
+
+The validator class is used to validate model data types. Is is simple as
+call lots of validations and then checking for error at the end.
+
+Eg.:
+
+$validator      = new \api\validator();
+$validator->validate('is_equal', $var1, $var2);
+$validator->validate('is_date', '2012-06-13');
+$error          = $validator->error();
+
+- Query builder
+
+The query class is used to help building mysql queries. It is simple as provide
+an instance of the db object so it can use the escape method and then call the
+public methods provided. The query object is usually handled by the DAO object.
+
+Eg.:
+
+$query      = new \api\query($db);
+$sql        = 'SELECT * FROM table WHERE ';
+$sql        = $query->is('field', $var1);
+
+- Request handling and passing parameters
+
+The request class is used to handle request method and get request parameters.
+It is simple as provide the _REQUEST and _SERVER php global variables as well
+as an instance of the conf and error objects, where the conf uses the request
+configuration. Then call the public methods provided.
+
+Eg.:
+
+$request        = new \api\request($_REQUEST, $_SERVER, $conf, $error);
+$resource       = $request->resource();
+$method         = $request->method();
+$variable       = $request->get('parameter');
+
+- Data Access Objects (DAO)
+
+The dao class is used to read, write and erase raw data to and from the database.
+It is simple as provide an instance of the db and query objects and then call 
+methods on it. The dao object is usually handled by the model object.
+
+Eg.:
+
+$dao        = new \api\dao($db, $query);
+$dao->write($options);
+$dao->read($options);
+$dao->erase($options);
+
+- Models
+
+The model class is used to find, save, remove and validate objects to and from
+the database. It is simple as provide an instance of the dao, validator, error
+and logger objects and then call public methods provided. The model object is 
+usually handled by the resource object.
+
+Eg.:
+
+$model      = new \api\model($dao, $validator, $error, $logger);
+$model->find($options);
+$model->save($fields);
+$model->remove($options);
+
+- Resouces
+
+The resource class is used to handle api resources that are mapped to urls
+called by the api client. It is easy as provide an instance of the, model,
+request, conf, logger and error objects. The resources have basic http methods
+like get, post and so on. The resource is usually handled by the api object,
+that is the main bootstrap called by the index.
+
+Eg.:
+
+$resource       = new \api\resource($model, $request, $conf, $logger, $error);
+$resource->get();
+$resource->post();
+
+- Basic Structure
+
+The simple_model, simple_dao and simple_resource are skeletons of the model, dao
+and resources that need to be created. They also contain some generic methods
+that can very well be used by all the parent classes. Usually the model, dao and
+resources created will always be parents of those simple ones.
+
+Eg.:
+
+class my_dao extends \api\simple_dao {}
+class my_model extends \api\simple_model {}
+class my_resource extends \api\simple_resource {}
+
+- API
+
+Well, this is not really a object to call methods on, it is just the bootstrap
+for the application. The api class is used to initialize all other objects that
+compose the basic application, specific required objects are handled in the form
+of dependencies. It is simple as create an instance.
+
+Eg.:
+
+new \api\api();

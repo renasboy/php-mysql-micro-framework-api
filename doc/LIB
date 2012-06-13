@@ -21,4 +21,3 @@ simple_dao.class.php            - simple dao class, is a basic implementation of
 simple_model.class.php          - simple model class, is a basic implementation of a real model, this one has only validation
 simple_resource.class.php       - simple resource class, is a basic implementation of a resource skeleton 
 validator.class.php             - validator class validates model data types (depends on core)
-

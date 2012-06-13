@@ -9,6 +9,6 @@ development time.
 The steps to create the first API would be:
 
 1. Design and load the database.
-2. Create resources, models and DAOs.
+2. Create resources, models and DAOs. (scafolding is coming soon)
 3. Add created resources to configuration
-4. Use and tweak the API
+4. Use, test and tweak the API
