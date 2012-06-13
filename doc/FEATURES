@@ -7,7 +7,7 @@ The resource url can also contains parameters. The api outputs json data.
 
 The features are basicaly the classes in the libraries and how they can be used.
 
-- Configuration
+- Configuration (depends on core)
 
 The conf class is used to read ini format configuration files. It is simple as
 provide the configuration file and then get values from it.
@@ -17,7 +17,7 @@ Eg.:
 $conf       = new \api\conf(API_CONF_FILE);
 $log_file   = $conf->get('log_file'); 
 
-- Logging
+- Logging (depends on core)
 
 The logger class is used to write message to log files. It is simple as provide
 the name of the log directory and the verbosity level and then send debug or
@@ -30,7 +30,7 @@ $logger     = new \api\logger(API_LOG_DIR, LOG_DEBUG);
 $logger->error('This is an error message');
 $logger->debug('This is a debug message');
 
-- Error handling
+- Error handling (depends on core)
 
 The error class is used to return http errors. It is simple as provide error
 reporting level and an instance of the logger and then call methods with http
@@ -58,7 +58,7 @@ $result     = $db->query('SELECT * FROM table');
 $object1    = $db->next($result);
 $object2    = $db->next($result);
 
-- Validation
+- Validation (depends on core)
 
 The validator class is used to validate model data types. Is is simple as
 call lots of validations and then checking for error at the end.
@@ -82,7 +82,7 @@ $query      = new \api\query($db);
 $sql        = 'SELECT * FROM table WHERE ';
 $sql        = $query->is('field', $var1);
 
-- Request handling and passing parameters
+- Request handling and passing parameters (depends on core)
 
 The request class is used to handle request method and get request parameters.
 It is simple as provide the _REQUEST and _SERVER php global variables as well
