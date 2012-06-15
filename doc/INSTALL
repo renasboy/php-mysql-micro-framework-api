@@ -38,3 +38,5 @@ vim etc/api.dev.ini
     $ ./bin/make
 
 6. you are done !!
+
+    Point your document root to the pub directory.
