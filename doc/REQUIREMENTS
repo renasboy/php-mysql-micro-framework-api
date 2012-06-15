@@ -1,4 +1,4 @@
 gnu/linux
 php 5.4
-apache httpd 2.4
+apache httpd 2.4 (mod_rewrite)
 mysql 5.1.57
