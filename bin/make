@@ -20,7 +20,7 @@ eval $(sed -n -e 's/API_ROOT/$API_ROOT/g' -e '/=/p' $API_ROOT/etc/api.ini)
 if test -e "$API_ROOT/lib/core"; then
 rm -f $API_ROOT/lib/core
 fi
-ln -sf $PARENT_ROOT/core $API_ROOT/lib/core
+ln -sf $core_root $API_ROOT/lib/core
 
 # create LOGS directories and give permissions
 mkdir -p $logger_root
