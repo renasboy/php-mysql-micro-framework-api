@@ -6,9 +6,15 @@ For explanation of steps see bellow.
 git clone https://github.com/renasboy/php-mysql-micro-framework-core core
 git clone https://github.com/renasboy/php-mysql-micro-framework-api api
 cd api
+vim etc/api.dev.ini
+#
+# here change the core_root and db conf 
+# core_root should point to the core repo cloned above
+# db conf is mainly host, user and pass
+#
 ln -sf api.dev.ini etc/api.ini
 ./bin/make
-vim etc/api.dev.ini
+./bin/db
 
 --
 
@@ -37,6 +43,10 @@ vim etc/api.dev.ini
     $ cd api
     $ ./bin/make
 
-6. you are done !!
+6. install the database structure, schema found inside data/ directory.
+
+    $ ./bin/db
+
+7. you are done !!
 
     Point apache document root to the pub directory and enable .htaccess
