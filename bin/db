@@ -11,9 +11,9 @@ PARENT_ROOT=`readlink -f $API_ROOT/..`
 eval $(sed -n -e 's/API_ROOT/$API_ROOT/g' -e '/=/p' $API_ROOT/etc/api.ini)
 
 echo CREATE DB
-/usr/local/mysql/bin/mysql -h $db_host -u $db_user -p"$db_pass" -B -e "drop database if exists $db_name;"
-/usr/local/mysql/bin/mysql -h $db_host -u $db_user -p"$db_pass" -B -e "create database $db_name default charset utf8;"
+mysql -h $db_host -u $db_user -p"$db_pass" -B -e "drop database if exists $db_name;"
+mysql -h $db_host -u $db_user -p"$db_pass" -B -e "create database $db_name default charset utf8;"
 
 echo LOADING DATA
 cd data
-/usr/local/mysql/bin/mysql $db_name -h $db_host -u $db_user -p"$db_pass" < app.mysql
+mysql $db_name -h $db_host -u $db_user -p"$db_pass" < app.mysql
