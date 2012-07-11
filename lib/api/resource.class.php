@@ -47,8 +47,10 @@ class resource {
         $this->_options     = $this->_options($this->_default_options[$this->_request->method()]);
 
         if ($this->_request->is_unique()) {
-            // TODO check if the active flag can be here, what happens with entities without it
             // TODO field name should not be mentioned
+            // THIS is what is causing resources with unique parameters to be always only one
+            // CHANGED the request is_unique not to approve array values of unique parameter
+            // ACTIVE CANNOT be used here, please remove
             $options        = ['active' => [0, 1], 'offset_start' => 0, 'offset_end' => 1] +
                 $this->_request->get_unique() +
                 $this->_default_options['get']['filter'];

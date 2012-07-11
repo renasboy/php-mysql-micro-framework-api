@@ -98,7 +98,7 @@ class request extends \core\request {
         //}
         $resource_uri   = explode('/', $this->resource_uri());
         foreach ($resource_uri as $param) {
-            if (!$this->get($param)) {
+            if (!$this->get($param) || is_array($this->get($param))) {
                 return false;
             }
         }
