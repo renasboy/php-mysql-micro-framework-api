@@ -51,8 +51,10 @@ class resource {
             // THIS is what is causing resources with unique parameters to be always only one
             // CHANGED the request is_unique not to approve array values of unique parameter
             // ACTIVE CANNOT be used here, please remove
+            // ADDED options from request if exising, so we could filter even if unique
             $options        = ['active' => [0, 1], 'offset_start' => 0, 'offset_end' => 1] +
                 $this->_request->get_unique() +
+                (array_key_exists('filter', $this->_options) ? $this->_options['filter'] : []) +
                 $this->_default_options['get']['filter'];
             $current        = $this->_model->find($options);
             if ($current) {
